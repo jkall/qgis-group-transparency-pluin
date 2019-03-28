@@ -10,7 +10,7 @@
 
 __author__ = 'groundwatergis@gmail.com'
 __date__ = '2019-03-27'
-__copyright__ = 'Copyright 2019, Kvartär AB'
+__copyright__ = 'Copyright 2019, Josef Källgården'
 
 import unittest
 

@@ -5,7 +5,7 @@
 #							 -------------------
 #		begin				: 2019-03-27
 #		git sha				: $Format:%H$
-#		copyright			: (C) 2019 by Kvartär AB
+#		copyright			: (C) 2019 by Josef Källgården
 #		email				: groundwatergis@gmail.com
 # ***************************************************************************/
 #
