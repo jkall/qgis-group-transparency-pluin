@@ -36,7 +36,7 @@ ENDPOINT = '/plugins/RPC2/'
 VERBOSE = False
 
 # JK additions:
-IGNORE_FOLDERS = ['.git', 'arkiv','__pycache__','test','help','scripts']
+IGNORE_FOLDERS = ['.git', 'arkiv','__pycache__','test','help','scripts','arkiv']
 IGNORE_FILES = ['.gitignore', 'plugin_zip_and_upload.py','Makefile','pb_tool.cfg','transparency.png']
 IGNORE_FILESUFFIX = ('.pyc','.zip')
 #/JK additions
