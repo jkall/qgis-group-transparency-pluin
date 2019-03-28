@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/plugins/group_transparency" >
-        <file>icon.png</file>
+        <file>transparency_24px.png</file>
     </qresource>
 </RCC>

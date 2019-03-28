@@ -11,7 +11,7 @@ name=Group Transparency
 qgisMinimumVersion=3.0
 description=This plugin sets transparency for selected layers
 version=0.1
-author=Kvartär AB
+author=Josef Källgården
 email=groundwatergis@gmail.com
 
 about=Let the user set layer transparency for all selected layers
@@ -30,9 +30,9 @@ tags=python,transparency
 
 homepage=http://homepage
 category=Plugins
-icon=icon.png
+icon=transparency_24px.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False

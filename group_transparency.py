@@ -165,10 +165,10 @@ class GroupTransparency:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = ':/plugins/group_transparency/icon.png'
+        icon_path = ':/plugins/group_transparency/transparency_24px.png'
         self.add_action(
             icon_path,
-            text=self.tr(u'Set Group Transparency'),
+            text=self.tr(u'Set transparency for selected layers'),
             callback=self.run,
             parent=self.iface.mainWindow())
 
