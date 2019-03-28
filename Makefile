@@ -48,7 +48,7 @@ PY_FILES = \
 
 UI_FILES = group_transparency_dialog_base.ui
 
-EXTRAS = metadata.txt icon.png
+EXTRAS = metadata.txt transparency_24px.png
 
 EXTRA_DIRS =
 
@@ -112,24 +112,24 @@ test: compile transcompile
 	@echo "e.g. source run-env-linux.sh <path to qgis install>; make test"
 	@echo "----------------------"
 
-deploy: compile doc transcompile
-	@echo
-	@echo "------------------------------------------"
-	@echo "Deploying plugin to your .qgis2 directory."
-	@echo "------------------------------------------"
-	# The deploy  target only works on unix like operating system where
-	# the Python plugin directory is located at:
-	# $HOME/$(QGISDIR)/python/plugins
-	mkdir -p $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vf $(PY_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vf $(UI_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vf $(COMPILED_RESOURCE_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vf $(EXTRAS) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vfr i18n $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
-	cp -vfr $(HELP) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)/help
-	# Copy extra directories if any
-	(foreach EXTRA_DIR,(EXTRA_DIRS), cp -R (EXTRA_DIR) (HOME)/(QGISDIR)/python/plugins/(PLUGINNAME)/;)
-
+#deploy: compile doc transcompile
+#	@echo
+#	@echo "------------------------------------------"
+#	@echo "Deploying plugin to your .qgis2 directory."
+#	@echo "------------------------------------------"
+#	# The deploy  target only works on unix like operating system where
+#	# the Python plugin directory is located at:
+#	# $HOME/$(QGISDIR)/python/plugins
+#	mkdir -p $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vf $(PY_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vf $(UI_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vf $(COMPILED_RESOURCE_FILES) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vf $(EXTRAS) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vfr i18n $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
+#	cp -vfr $(HELP) $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)/help
+#	# Copy extra directories if any
+#	(foreach EXTRA_DIR,(EXTRA_DIRS), cp -R (EXTRA_DIR) (HOME)/(QGISDIR)/python/plugins/(PLUGINNAME)/;)
+#
 
 # The dclean target removes compiled python files from plugin directory
 # also deletes any .git entry
@@ -149,7 +149,8 @@ derase:
 	@echo "-------------------------"
 	rm -Rf $(HOME)/$(QGISDIR)/python/plugins/$(PLUGINNAME)
 
-zip: deploy dclean
+#zip: deploy dclean
+zip: dclean
 	@echo
 	@echo "---------------------------"
 	@echo "Creating plugin zip bundle."
