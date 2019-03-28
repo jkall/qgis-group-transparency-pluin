@@ -16,8 +16,8 @@ email=groundwatergis@gmail.com
 
 about=Let the user set layer transparency for all selected layers
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/jkall/qgis-group-transparency-pluin/issues
+repository=https://github.com/jkall/qgis-group-transparency-pluin
 # End of mandatory metadata
 
 # Recommended items:
@@ -28,7 +28,7 @@ repository=http://repo
 # Tags are comma separated with spaces allowed
 tags=python,transparency
 
-homepage=http://homepage
+#homepage=http://homepage
 category=Plugins
 icon=transparency_24px.png
 # experimental flag
