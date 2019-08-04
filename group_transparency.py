@@ -24,7 +24,7 @@
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction
-from qgis.core import QgsProject, QgsLayerTreeLayer
+from qgis.core import QgsProject, QgsLayerTreeLayer, QgsVectorLayer, QgsRasterLayer
 from qgis.utils import iface
 
 
@@ -206,6 +206,10 @@ class GroupTransparency:
             transparency_0_100 = self.dlg.spinBox.value()
             # selected layers
             selectedLayers = iface.layerTreeView().selectedLayers()
+            opacity = (100-transparency_0_100)/100.0
             for layer in selectedLayers:
-                layer.setOpacity((100-transparency_0_100)/100.0)
+                if isinstance(layer, QgsVectorLayer):
+                    layer.setOpacity(opacity)
+                elif isinstance(layer, QgsRasterLayer):
+                    layer.renderer().setOpacity(opacity)
                 layer.triggerRepaint()
