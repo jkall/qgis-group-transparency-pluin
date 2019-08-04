@@ -175,6 +175,7 @@ class GroupTransparency:
         # will be set False in run()
         self.first_start = True
 
+        self.slider_status = None
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -184,6 +185,13 @@ class GroupTransparency:
                 action)
             self.iface.removeToolBarIcon(action)
 
+    def slider(self):
+        self.slider_status = True
+        self.run_main()
+
+    def spinbox(self):
+        self.slider_status = False
+        self.run_main()
 
     def run(self):
         """Run method that performs all the real work"""
@@ -193,6 +201,9 @@ class GroupTransparency:
         if self.first_start == True:
             self.first_start = False
             self.dlg = GroupTransparencyDialog()
+            print(dir(self.dlg))
+            self.dlg.spinBox.valueChanged.connect(self.spinbox)
+            self.dlg.slider.valueChanged.connect(self.slider)
 
         # show the dialog
         self.dlg.show()
@@ -203,7 +214,17 @@ class GroupTransparency:
             
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            transparency_0_100 = self.dlg.spinBox.value()
+            self.run_main()
+
+    def run_main(self):
+            if self.slider_status == True:
+                transparency_0_100 = self.dlg.slider.value()
+                self.dlg.spinBox.setValue(transparency_0_100)
+
+            else:
+                transparency_0_100 = self.dlg.spinBox.value()
+                self.dlg.slider.setValue(transparency_0_100)
+
             # selected layers
             selectedLayers = iface.layerTreeView().selectedLayers()
             opacity = (100-transparency_0_100)/100.0
