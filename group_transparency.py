@@ -201,6 +201,7 @@ class GroupTransparency:
         if self.first_start == True:
             self.first_start = False
             self.dlg = GroupTransparencyDialog()
+            self.dlg.spinBox.valueChanged.connect(self.spinbox)
             self.dlg.slider.valueChanged.connect(self.slider)
 
         # show the dialog
