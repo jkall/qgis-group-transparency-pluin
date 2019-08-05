@@ -10,7 +10,7 @@
 name=Group Transparency
 qgisMinimumVersion=3.0
 description=This plugin sets transparency for selected layers
-version=0.1
+version=0.2
 author=Josef Källgården
 email=groundwatergis@gmail.com
 

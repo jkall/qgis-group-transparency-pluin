@@ -24,7 +24,7 @@
 from PyQt5.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction
-from qgis.core import QgsProject, QgsLayerTreeLayer
+from qgis.core import QgsProject, QgsLayerTreeLayer, QgsVectorLayer, QgsRasterLayer
 from qgis.utils import iface
 
 
@@ -175,6 +175,7 @@ class GroupTransparency:
         # will be set False in run()
         self.first_start = True
 
+        self.slider_status = None
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
@@ -184,6 +185,13 @@ class GroupTransparency:
                 action)
             self.iface.removeToolBarIcon(action)
 
+    def slider(self):
+        self.slider_status = True
+        self.run_main()
+
+    def spinbox(self):
+        self.slider_status = False
+        self.run_main()
 
     def run(self):
         """Run method that performs all the real work"""
@@ -193,19 +201,25 @@ class GroupTransparency:
         if self.first_start == True:
             self.first_start = False
             self.dlg = GroupTransparencyDialog()
+            self.dlg.slider.valueChanged.connect(self.slider)
 
         # show the dialog
         self.dlg.show()
-        # Run the dialog event loop
-        result = self.dlg.exec_()
-        # See if OK was pressed
-        if result:
-            
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
-            transparency_0_100 = self.dlg.spinBox.value()
+
+    def run_main(self):
+            if self.slider_status == True:
+                transparency_0_100 = self.dlg.slider.value()
+                self.dlg.spinBox.setValue(transparency_0_100)
+            else:
+                transparency_0_100 = self.dlg.spinBox.value()
+                self.dlg.slider.setValue(transparency_0_100)
+
             # selected layers
             selectedLayers = iface.layerTreeView().selectedLayers()
+            opacity = (100-transparency_0_100)/100.0
             for layer in selectedLayers:
-                layer.setOpacity((100-transparency_0_100)/100.0)
+                if isinstance(layer, QgsVectorLayer):
+                    layer.setOpacity(opacity)
+                elif isinstance(layer, QgsRasterLayer):
+                    layer.renderer().setOpacity(opacity)
                 layer.triggerRepaint()
